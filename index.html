@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculo do Cloro</title>
+</head>
+<body>
+     <h1>Calculo do Cloro</h1>
+     <div id="calculadora">
+        <h2>Calculadora da quantidade de Cloro</h2>
+        <div class="conjunto_valores">
+            <p>Digite o Volume de água em Litros: <br>
+            <input type="number" name="volume_agua" id="volume_agua" step="0.01" onkeydown="proximoItem(event)" placeholder="Utiliza-se 1 Litro"> Litros</p>
+        </div>
+        <div class="conjunto_valores">
+            <p>Digite a concentração do cloro em 'ppm': <br>
+            <input type="number" name="ppm_cloro" id="ppm_cloro" onkeydown="proximoItem(event)" placeholder="É mais utilizado 200 ppm"> ppm</p>
+        </div>
+        <div class="conjunto_valores">
+            <p>Digite a poncentagem de cloro ativo: <br>
+                <input type="number" name="cloro_ativo" id="cloro_ativo" step="0.1" onkeydown="proximoItem(event)" placeholder="A 'QBOA' tem 2%"> %</p>
+        </div>
+        <div id="dica"><p><em>Dica: Altere os valores que contém vírgula e coloque ponto no lugar</em></p></div>
+        <button type="button" id="submit" onclick="validacao_form()">Calcular</button>
+        <button type="button" id="reset" onclick="resetar_valores()">Resetar Valores</button>
+        <div id="saida"><p>Aqui irá sair o resultado</p></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

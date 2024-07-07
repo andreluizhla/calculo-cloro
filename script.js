@@ -54,15 +54,45 @@ function saida_calculo(){
 }
 
 function tipo_limpeza(){
-    if (ppm_cloro >= 100 && ppm_cloro <= 200){
-        saida.innerHTML += "<p>Você poderá usar essa solução para fazer tanto a <strong>Limpeza Geral</strong>, quanto para a <strong>Higienização do Hortifruti</strong></p>"
-    } else if (ppm_cloro >= 50 && ppm_cloro < 250){
-        saida.innerHTML += "<p>Você poderá usar essa solução para fazer somente a <strong>Limpeza Geral</strong></p>"
-    } else if (ppm_cloro < 50){
-        saida.innerHTML += "<p>A solução é muito fraca para fazer qualquer coisa relacionada a higienização</p>"
-    } else {
-        saida.innerHTML += "<p>A solução é mais que suficiente para limpar qualquer coisa</p>"
+    var possibilidades_limpeza = [
+        {
+            condicao: ppm_cloro >= 100 && ppm_cloro <= 200, 
+            tipo: "Higienização do Hortifruti</il><br><il>Utensílios de Cozinha</il><br><il>Geladeiras e Fogões"
+        },
+        {
+            condicao: ppm_cloro >= 50 && ppm_cloro < 250, 
+            tipo: "Limpeza Geral de Superfícies"
+        },
+        {
+            condicao: ppm_cloro == 200, 
+            tipo: "Tábuas de Corte"
+        },
+        {
+            condicao: ppm_cloro < 50, 
+            tipo: "<p>A solução é muito fraca para fazer a higienização de alguma coisa</p>"
+        },
+        {
+            condicao: ppm_cloro >= 1000, 
+            tipo: "Desinfecção porfunda (após manipulação de carnes cruas) A partir de 1000 ppm, <strong>TOME CUIDADO</strong>, a solução poderá ser prejudicial a saúde "
+        },
+        {
+            condicao: ppm_cloro >= 5000, 
+            tipo: "<p><strong>CUIDADO: A solução criada poderá corroer e danificar superfícies e materiais, além de ser prejudicial para a saúde do manipulador dessa solução</strong></p>"
+        }
+    ]
+    saida.innerHTML += "<p>Você poderá usar essa solução para realizar a:</p><ol id='limpezas_possiveis'></ol>"
+    var lista = document.getElementById('limpezas_possiveis')
+    function realizarVerificacoes(){
+        possibilidades_limpeza.forEach(function(verificacao){
+            var li = document.createElement('li')
+            if (verificacao.condicao){
+                li.innerHTML = verificacao.tipo
+                lista.appendChild(li)
+                }
+            }
+        )
     }
+    realizarVerificacoes()
 }
 
 function resetar_valores(){

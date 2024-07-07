@@ -7,26 +7,88 @@
     <title>Calculo do Cloro</title>
 </head>
 <body>
-     <h1>Calculo do Cloro</h1>
-     <div id="calculadora">
-        <h2>Calculadora da quantidade de Cloro</h2>
-        <div class="conjunto_valores">
-            <p>Digite o Volume de água em Litros: <br>
-            <input type="number" name="volume_agua" id="volume_agua" step="0.01" onkeydown="proximoItem(event)" placeholder="Utiliza-se 1 Litro"> Litros</p>
-        </div>
-        <div class="conjunto_valores">
-            <p>Digite a concentração do cloro em 'ppm': <br>
-            <input type="number" name="ppm_cloro" id="ppm_cloro" onkeydown="proximoItem(event)" placeholder="É mais utilizado 200 ppm"> ppm</p>
-        </div>
-        <div class="conjunto_valores">
-            <p>Digite a poncentagem de cloro ativo: <br>
-                <input type="number" name="cloro_ativo" id="cloro_ativo" step="0.1" onkeydown="proximoItem(event)" placeholder="A 'QBOA' tem 2%"> %</p>
-        </div>
-        <div id="dica"><p><em>Dica: Altere os valores que contém vírgula e coloque ponto no lugar</em></p></div>
-        <button type="button" id="submit" onclick="validacao_form()">Calcular</button>
-        <button type="button" id="reset" onclick="resetar_valores()">Resetar Valores</button>
-        <div id="saida"><p>Aqui irá sair o resultado</p></div>
-    </div>
+    <header>
+        <h1>Calculo do Cloro</h1>
+    </header>
+    <section id="calculadora">
+            <h2>Calculadora da quantidade de Cloro</h2>
+            <div class="conjunto_valores">
+                <p>Digite o Volume de água em Litros: <br>
+                <input type="number" name="volume_agua" id="volume_agua" step="0.01" onkeydown="proximoItem(event)" placeholder="Utiliza-se 1 Litro"> Litros</p>
+            </div>
+            <div class="conjunto_valores">
+                <p>Digite a concentração do cloro em 'ppm': <br>
+                <input type="number" name="ppm_cloro" id="ppm_cloro" onkeydown="proximoItem(event)" placeholder="É mais utilizado 200 ppm"> ppm</p>
+            </div>
+            <div class="conjunto_valores">
+                <p>Digite a poncentagem de cloro ativo: <br>
+                    <input type="number" name="cloro_ativo" id="cloro_ativo" step="0.1" onkeydown="proximoItem(event)" placeholder="A 'QBOA' tem 2%"> %</p>
+            </div>
+            <div id="botoes">
+                <button type="button" id="submit" onclick="validacao_form()">Calcular</button>
+                <button type="button" id="reset" onclick="resetar_valores()">Resetar Valores</button>
+            </div>
+            <div id="saida"><p>Aqui irá sair o resultado</p></div>
+    </section>
+    <section id="conteudo">
+
+    </section>
+    <section id="tabela">
+        <table>
+            <thead>
+                <tr>
+                    <th>Supercifice da Cozinha</th>
+                    <th>Uso</th>
+                    <th>Concentradação de Cloro (ppm)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bancadas e mesas</td>
+                    <td>Higienização geral após preparo de alimentos</td>
+                    <td>100 - 200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Pia</td>
+                    <td>Higienização geral e após manipulação de alimentos</td>
+                    <td>100 - 200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Tábuas de corte</td>
+                    <td>Higienização após cortar alimentos</td>
+                    <td>200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Utensilhos de cozinha</td>
+                    <td>Higienização gral e após cortar alimentos</td>
+                    <td>100 - 200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Geladeiras</td>
+                    <td>Higienização de prateleiras e superfícies internas</td>
+                    <td>100 - 200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Fogões</td>
+                    <td>Higienização de superfícies externas</td>
+                    <td>100 - 200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Micro-ondas e outros eletrodomésticos</td>
+                    <td>Higienização de superfícies internas e externas</td>
+                    <td>100 - 200 ppm</td>
+                </tr>
+                <tr>
+                    <td>Desinfecção profunda (ex.: após manipulação de carnes cruas)</td>
+                    <td>Higienização de todas as superfícies que entraram em contado com carne crua</td>
+                    <td>1000 ppm</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        <p id="criador">Site criado pelo &#64;André Luiz do Curso de Auxiliar de Cozinha</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

@@ -56,7 +56,7 @@ function saida_calculo(){
 function tipo_limpeza(){
     if (ppm_cloro >= 100 && ppm_cloro <= 200){
         saida.innerHTML += "<p>Você poderá usar essa solução para fazer tanto a <strong>Limpeza Geral</strong>, quanto para a <strong>Higienização do Hortifruti</strong></p>"
-    } else if (ppm >= 50 && ppm_cloro < 250){
+    } else if (ppm_cloro >= 50 && ppm_cloro < 250){
         saida.innerHTML += "<p>Você poderá usar essa solução para fazer somente a <strong>Limpeza Geral</strong></p>"
     } else if (ppm_cloro < 50){
         saida.innerHTML += "<p>A solução é muito fraca para fazer qualquer coisa relacionada a higienização</p>"

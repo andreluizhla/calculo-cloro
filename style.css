@@ -7,13 +7,13 @@
     --azul-claro: #c0ecfb;
     --branco: #ffffff;
     --verde: #abedab;
-    --cinza: #d3d3d3;
+    --cinza: #dedddd;
     --azul-escuro: #154575;
     --preto: #000000;
 }
-@media screen and (min-width:320px) {
+@media screen and (min-width:315px) {
     section {
-        margin: 0px;
+        margin: 10px;
     }
     table {
         margin: 0px;
@@ -46,7 +46,7 @@ body{
 
 header{
     padding: 30px 0px 0px 0px;
-    text-shadow: 10px 10px 15px #000000d4;
+    text-shadow: 5px 5px 15px #000000d4;
 }
 
 header > h1{
@@ -104,5 +104,16 @@ td {
 }
 
 section#calculadora{
+    text-align: justify;
+}
 
+div.conjunto_valores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+div.conjunto_valores input{
+    flex: 1 0 10rem;
+    padding: 1em;
 }

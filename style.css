@@ -63,7 +63,7 @@ main{
 h2 {
     text-align: left;
     padding: 5px 5px 5px 15px;
-    background-image: linear-gradient(90deg, var(--cinza), var(--azul-claro), var(--branco));
+    background-image: linear-gradient(90deg, var(--azul-claro), var(--branco));
 }
 
 section > p {

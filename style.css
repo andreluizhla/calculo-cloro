@@ -108,18 +108,27 @@ td {
     border: 1px solid var(--preto);
     padding: 10px;
 }
-
+/*
 section#calculadora{
     text-align: justify;
 }
-
-div.conjunto_valores {
+*/
+.conjunto_valores {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5em;
 }
 
-div.conjunto_valores input{
+.conjunto_valores #volume_agua, .conjunto_valores #ppm_cloro, .conjunto_valores #cloro_ativo{
     flex: 1 0 10rem;
-    padding: 1em;
+    padding: 1em 1em;
+}
+
+input {
+    flex: 1 0 2rem;
+}
+
+button {
+    padding: 10px;
+
 }

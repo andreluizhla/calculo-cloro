@@ -17,6 +17,7 @@
     }
     table {
         margin: 0px;
+        text-size: 10px;
     }
 
 }
@@ -27,6 +28,7 @@
     }
     table{
         margin: 20px;
+        text-size: 14px;
     }
 
 }
@@ -34,6 +36,10 @@
 @media screen and (min-width:1024px) {
     section {
         margin: 40px;
+    }
+    table{
+        margin: 40px;
+        text-size: 16px;
     }
        
 }

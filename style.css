@@ -6,38 +6,51 @@
 :root{
     --azul-claro: #ADD8E6;
     --branco: #ffffff;
-    --verde: #98ff98;
+    --verde: #abedab;
     --cinza: #d3d3d3;
     --azul-escuro: #003366;
+    --preto: #000000;
 }
-/*
 @media screen and (min-width:320px) {
-    
+    section {
+        margin: 0px;
+    }
+
 }
 
-@media screen and (min-width:808px) {
-    
+@media screen and (min-width:500px) {
+    section {
+        margin: 20px;
+    }
+
 }
 
 @media screen and (min-width:1024px) {
-    
-}*/
+    section {
+        margin: 40px;
+    }
+       
+}
 body{
     min-width: 320px;
     max-width: 1024px;
     margin: auto;
-    box-shadow: 10px 10px 10px black;
+    background-image: linear-gradient(125deg, var(--azul-claro), var(--azul-escuro));
 }
 
 header{
     padding: 30px;
-    background-color: var(--azul-claro);
+    text-shadow: 10px 10px 15px #000000d4;
 }
 
 header > h1{
     text-align: center;
     padding: 10px;
-    
+}
+
+main{
+    box-shadow: 5px 10px 20px #000000de;
+    background-color: var(--branco);
 }
 
 h2 {
@@ -47,17 +60,36 @@ h2 {
 
 section > p {
     padding: 10px 20px;
+    text-indent: 30px;
+    line-height: 1.5em;
+}
+
+li {
+    margin-left: 30px;
+
 }
 
 table {
     position: relative;
+    border-collapse: collapse;
+    text-align: center;
 }
 
 thead > tr > th {
     position: sticky;
-    top: -1px
+    top: -1px;
+    border: 1px solid var(--preto);
 }
 
 div#tabela{
-    overflow-x: auto;
+    overflow-x: scroll;
+}
+
+th {
+    padding: 5px;
+}
+
+td {
+    border: 1px solid var(--preto);
+    padding: 10px;
 }

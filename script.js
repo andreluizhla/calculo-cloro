@@ -1,75 +1,104 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const volumeAgua = document.getElementById("volume_agua");
-    const ppmCloro = document.getElementById("ppm_cloro");
-    const cloroAtivo = document.getElementById("cloro_ativo");
-    const saida = document.getElementById("saida");
-    const limpPp = document.getElementById("limpezas_possiveis");
+var saida = document.getElementById("saida")
+var form_volume_agua = document.getElementById("volume_agua")
+var form_ppm_cloro = document.getElementById('ppm_cloro')
+var form_cloro_ativo = document.getElementById('cloro_ativo')
+let volume_agua, ppm_cloro, cloro_ativo, resultado
 
-    function proximoItem(event) {
-        if (event.key === "Enter") {
-            const inputs = document.querySelectorAll('input');
-            const index = Array.from(inputs).indexOf(event.target);
-            inputs[index + 1]?.focus();
+function proximoItem(tecla){
+    if (tecla.key === 'Enter'){
+        if (document.activeElement === form_volume_agua){
+            form_ppm_cloro.focus()
+            form_ppm_cloro.select()
+        } else if (document.activeElement === form_ppm_cloro){
+            form_cloro_ativo.focus()
+            form_cloro_ativo.select()
+        } else {
+            form_volume_agua.focus()
+            validacao_form()
         }
     }
+}
 
-    function validarNumero(numero) {
-        return !isNaN(numero) && numero >= 0;
+function validacao_form(){
+    saida.innerHTML = ''
+    if (form_volume_agua.value == 0 || form_ppm_cloro.value == 0 || form_cloro_ativo.value == 0){
+        saida.innerHTML = '<p id="erro">ERRO: Por favor, complete os campos anteriores</p>'
+    } else{
+        volume_agua = Number(form_volume_agua.value)
+        ppm_cloro = Number(form_ppm_cloro.value)
+        cloro_ativo = Number(form_cloro_ativo.value)
+        validacao_negativo()
     }
+}
 
-    function calculadoraCloro(volume, ppm, porcentagem) {
-        return (volume * ppm) / (1000 * (porcentagem / 100));
+function validacao_negativo(){
+    if (volume_agua < 0 || ppm_cloro < 0 || cloro_ativo < 0){
+        saida.innerHTML = '<p id="erro">ERRO: Por favor digite um valor maior que 0 nos campos anteriores</p>'
+    } else{
+        calculo()
     }
+}
+function calculo(){
+    resultado = (volume_agua * ppm_cloro) / (cloro_ativo * 10)
+    saida_calculo()
+}
 
-    function validacaoForm() {
-        const volume = parseFloat(volumeAgua.value);
-        const ppm = parseFloat(ppmCloro.value);
-        const porcentagem = parseFloat(cloroAtivo.value);
+function saida_calculo(){
+    resultado_formatado = resultado.toString().replace('.', ',')
+    volume_agua_formatado = volume_agua
+    if (volume_agua % 1 !== 0){
+        volume_agua_formatado = volume_agua.toString().replace('.', ',')
+    }
+    saida.innerHTML = `<p>Para <strong>${volume_agua_formatado} Litro(s) de água</strong>, você irá precisar de <strong>${resultado_formatado} ml de cloro</strong> para criar a solução clorada</p>`
+    tipo_limpeza()
+}
 
-        if (!validarNumero(volume) || !validarNumero(ppm) || !validarNumero(porcentagem)) {
-            saida.innerHTML = "Por favor, insira valores válidos para todos os campos.";
-            return;
+function tipo_limpeza(){
+    var possibilidades_limpeza = [
+        {
+            condicao: ppm_cloro >= 100 && ppm_cloro <= 200, 
+            tipo: "<li>Higienização do Hortifruti</li><li>Utensílios de Cozinha</li><li>Geladeiras e Fogões</li>"
+        },
+        {
+            condicao: ppm_cloro >= 50 && ppm_cloro < 250, 
+            tipo: "<li>Limpeza Geral de Superfícies</li>"
+        },
+        {
+            condicao: ppm_cloro == 200, 
+            tipo: "<li>Tábuas de Corte</li>"
+        },
+        {
+            condicao: ppm_cloro < 50, 
+            tipo: "<li>A solução é muito fraca para fazer a higienização de algum alimento ou superfície</li>"
+        },
+        {
+            condicao: ppm_cloro >= 1000, 
+            tipo: "<li>Desinfecção porfunda (após manipulação de carnes cruas)</li><p>A partir de 1000 ppm, <strong>TOME CUIDADO</strong>, a solução poderá ser prejudicial a saúde</p>"
+        },
+        {
+            condicao: ppm_cloro >= 5000, 
+            tipo: "<p id='cuidado'><strong>CUIDADO: A solução criada poderá corroer e danificar superfícies e materiais, além de ser prejudicial para a saúde do manipulador dessa solução</strong></p>"
         }
+    ]
+    saida.innerHTML += "<p>Você poderá usar essa solução para realizar a:</p>"
+    var ul = document.getElementById('limpezas_possiveis');
+        function realizarVerificacoes() {
+            possibilidades_limpeza.forEach(function(verificacao) {
+                if (verificacao.condicao) {
+                    var tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = verificacao.tipo;
+                    while (tempDiv.firstChild) {
+                        ul.appendChild(tempDiv.firstChild);
+                    }
+                }
+            });
+        }
+    realizarVerificacoes()
+}
 
-        const mlCloro = calculadoraCloro(volume, ppm, porcentagem).toFixed(2);
-        saida.innerHTML = `Você precisará de ${mlCloro} ml de cloro.`;
-
-        gerarSugestoesLimp(mlCloro);
-    }
-
-    function gerarSugestoesLimp(mlCloro) {
-        limpPp.innerHTML = "";
-
-        const sugestoes = [
-            { superficie: "Bancadas e mesas", uso: "Higienização geral após preparo de alimentos", concentracao: "100 - 200 ppm" },
-            { superficie: "Pia", uso: "Higienização geral e após manipulação de alimentos", concentracao: "100 - 200 ppm" },
-            { superficie: "Tábuas de corte", uso: "Higienização após cortar alimentos", concentracao: "200 ppm" },
-            { superficie: "Utensílios de cozinha", uso: "Higienização geral e após cortar alimentos", concentracao: "100 - 200 ppm" },
-            { superficie: "Geladeiras", uso: "Higienização de prateleiras e superfícies internas", concentracao: "100 - 200 ppm" },
-            { superficie: "Fogões", uso: "Higienização de superfícies externas", concentracao: "100 - 200 ppm" },
-            { superficie: "Micro-ondas e outros eletrodomésticos", uso: "Higienização de superfícies internas e externas", concentracao: "100 - 200 ppm" },
-            { superficie: "Desinfecção profunda", uso: "Higienização de todas as superfícies que entraram em contato com carne crua", concentracao: "1000 ppm" },
-        ];
-
-        sugestoes.forEach(sugestao => {
-            const li = document.createElement("li");
-            li.textContent = `${sugestao.superficie}: ${sugestao.uso} - ${sugestao.concentracao}`;
-            limpPp.appendChild(li);
-        });
-    }
-
-    function resetarValores() {
-        volumeAgua.value = "";
-        ppmCloro.value = "";
-        cloroAtivo.value = "";
-        saida.innerHTML = "Aqui irá sair o resultado";
-        limpPp.innerHTML = "";
-    }
-
-    volumeAgua.addEventListener("keydown", proximoItem);
-    ppmCloro.addEventListener("keydown", proximoItem);
-    cloroAtivo.addEventListener("keydown", proximoItem);
-
-    document.getElementById("submit").addEventListener("click", validacaoForm);
-    document.getElementById("reset").addEventListener("click", resetarValores);
-});
+function resetar_valores(){
+    form_volume_agua.value = null
+    form_ppm_cloro.value = null
+    form_cloro_ativo.value = null
+    saida.innerHTML = '<p>Aqui irá sair o resultado</p>'
+}

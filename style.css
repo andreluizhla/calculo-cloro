@@ -1,9 +1,11 @@
-*{
+/* Estilos Gerais */
+@charset "UTF-8";
+* {
     padding: 0;
     margin: 0;
 }
 
-:root{
+:root {
     --azul-claro: #c0ecfb;
     --branco: #ffffff;
     --verde: #abedab;
@@ -11,7 +13,9 @@
     --azul-escuro: #154575;
     --preto: #000000;
 }
-@media screen and (min-width:315px) {
+
+/* Estilos Responsivos */
+@media screen and (min-width: 315px) {
     section {
         margin: 10px;
     }
@@ -19,123 +23,151 @@
         margin: 0px;
         font-size: 10px;
     }
-
 }
 
-@media screen and (min-width:500px) {
+@media screen and (min-width: 500px) {
     section {
         margin: 20px;
     }
-    table{
+    table {
         margin: 20px;
         font-size: 12px;
     }
-
 }
 
-@media screen and (min-width:1024px) {
+@media screen and (min-width: 1024px) {
     section {
         margin: 40px;
     }
-    table{
+    table {
         margin: 40px;
         font-size: 16px;
     }
-       
 }
-body{
+
+/* Estilos do Corpo */
+body {
     min-width: 320px;
     max-width: 1024px;
-    margin: 0px auto;
+    margin: auto;
     background-image: linear-gradient(125deg, var(--azul-claro), var(--azul-escuro));
 }
 
-header{
-    padding: 30px 0px 0px 0px;
-    text-shadow: 5px 5px 15px #000000d4;
+/* Estilos do Cabeçalho */
+header {
+    padding: 30px 0px;
+    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.83);
 }
 
-header > h1{
+header h1 {
     text-align: center;
     padding: 10px;
 }
 
-main{
-    box-shadow: 5px 10px 20px #000000de;
+/* Estilos do Conteúdo Principal */
+main {
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.87);
     background-color: var(--branco);
-    padding-top: -30px;
-    margin: 0px;
+    padding: 20px;
 }
 
 h2 {
     text-align: left;
-    padding: 5px 5px 5px 15px;
-    background-image: linear-gradient(90deg, var(--azul-claro), var(--branco));
+    padding: 10px 15px;
+    background: linear-gradient(90deg, var(--azul-claro), var(--branco));
 }
 
-section > p {
+section p {
     text-indent: 30px;
-    line-height: 1.5em;
-    padding: 20px 0px 30px 0px;
+    line-height: 1.5;
+    padding: 20px 0;
 }
 
 li {
     margin-left: 30px;
-
 }
 
 table {
     position: relative;
     border-collapse: collapse;
     text-align: center;
-    margin: 20px;
+    margin: 20px 0;
 }
 
-thead > tr > th {
+thead th {
     position: sticky;
     top: -1px;
     border: 1px solid var(--preto);
 }
 
-div#tabela{
-    overflow-x: scroll;
+div#tabela {
+    overflow-x: auto;
 }
 
-th {
-    padding: 5px;
-}
-
-td {
+th, td {
     border: 1px solid var(--preto);
     padding: 10px;
 }
-/*
-section#calculadora{
-    text-align: justify;
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
 }
-*/
+
+/* Estilos da Calculadora */
 .conjunto_valores {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5em;
 }
 
-.conjunto_valores #volume_agua, .conjunto_valores #ppm_cloro, .conjunto_valores #cloro_ativo{
+.conjunto_valores input {
     flex: 1 0 10rem;
-    padding: 1em 1em;
-}
-
-input {
-    flex: 1 0 2rem;
+    padding: 1em;
 }
 
 button {
     padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-footer{
-    min-width: 320px;
+/* Botão Verde */
+button#submit {
+    background-color: var(--verde);
+    color: var(--preto);
+}
+
+button#submit:hover {
+    background-color: var(--azul-claro);
+}
+
+/* Botão Vermelho */
+button#reset {
+    background-color: #ff4d4d;
+    color: var(--branco);
+}
+
+button#reset:hover {
+    background-color: #ff6666;
+}
+
+/* Footer */
+footer {
+    background-color: rgb(67, 74, 132);
+    color: rgb(255, 255, 255);
+    border-radius: 0 0 10px 10px;
+    box-shadow: rgba(44, 44, 44, 0.537) 4px 4px 4px;
     max-width: 1024px;
-    margin: 0px auto;
+    min-width: 320px;
+    margin: 0px auto 30px;
+    padding: 10px;
     text-align: center;
 }

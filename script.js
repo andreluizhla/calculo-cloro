@@ -1,8 +1,10 @@
+var ul = document.getElementById('limpezas_possiveis');
 var saida = document.getElementById("saida")
 var form_volume_agua = document.getElementById("volume_agua")
 var form_ppm_cloro = document.getElementById('ppm_cloro')
 var form_cloro_ativo = document.getElementById('cloro_ativo')
 let volume_agua, ppm_cloro, cloro_ativo, resultado
+var p = saida.getElementsByTagName('p')[0]
 
 function proximoItem(tecla){
     if (tecla.key === 'Enter'){
@@ -22,7 +24,10 @@ function proximoItem(tecla){
 function validacao_form(){
     saida.innerHTML = ''
     if (form_volume_agua.value == 0 || form_ppm_cloro.value == 0 || form_cloro_ativo.value == 0){
-        saida.innerHTML = '<p id="erro">ERRO: Por favor, complete os campos anteriores</p>'
+        saida.innerHTML = ''
+        p.innerHTML = 'ERRO: Por favor, complete os campos anteriores'
+        p.id = 'erro'
+        saida.appendChild(p)
     } else{
         volume_agua = Number(form_volume_agua.value)
         ppm_cloro = Number(form_ppm_cloro.value)
@@ -33,7 +38,7 @@ function validacao_form(){
 
 function validacao_negativo(){
     if (volume_agua < 0 || ppm_cloro < 0 || cloro_ativo < 0){
-        saida.innerHTML = '<p id="erro">ERRO: Por favor digite um valor maior que 0 nos campos anteriores</p>'
+        saida.innerHTML = '<p>ERRO: Por favor digite um valor maior que 0 nos campos anteriores</p>'
     } else{
         calculo()
     }
@@ -81,7 +86,6 @@ function tipo_limpeza(){
         }
     ]
     saida.innerHTML += "<p>Você poderá usar essa solução para realizar a:</p>"
-    var ul = document.getElementById('limpezas_possiveis');
         function realizarVerificacoes() {
             possibilidades_limpeza.forEach(function(verificacao) {
                 if (verificacao.condicao) {
@@ -100,5 +104,6 @@ function resetar_valores(){
     form_volume_agua.value = null
     form_ppm_cloro.value = null
     form_cloro_ativo.value = null
-    saida.innerHTML = '<p>Aqui irá sair o resultado</p>'
+    saida.innerHTML = '<p id="nada">Aqui irá sair o resultado</p>'
+    ul.innerHTML = ''
 }

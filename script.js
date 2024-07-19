@@ -6,8 +6,8 @@ var form_cloro_ativo = document.getElementById('cloro_ativo')
 let volume_agua, ppm_cloro, cloro_ativo, resultado
 var errop = document.getElementById('erro')
 
-function erro(valor){
-    if (valor){
+function erro(valor) {
+    if (valor) {
         errop.style.backgroundColor = '#ec2e2e93'
         errop.style.padding = '10px'
         saidap.innerHTML = ''
@@ -18,12 +18,12 @@ function erro(valor){
     }
 }
 
-function proximoItem(tecla){
-    if (tecla.key === 'Enter'){
-        if (document.activeElement === form_volume_agua){
+function proximoItem(tecla) {
+    if (tecla.key === 'Enter') {
+        if (document.activeElement === form_volume_agua) {
             form_ppm_cloro.focus()
             form_ppm_cloro.select()
-        } else if (document.activeElement === form_ppm_cloro){
+        } else if (document.activeElement === form_ppm_cloro) {
             form_cloro_ativo.focus()
             form_cloro_ativo.select()
         } else {
@@ -33,12 +33,12 @@ function proximoItem(tecla){
     }
 }
 
-function validacao_form(){
+function validacao_form() {
     saidap.innerHTML = ''
-    if (form_volume_agua.value == 0 || form_ppm_cloro.value == 0 || form_cloro_ativo.value == 0){
+    if (form_volume_agua.value == 0 || form_ppm_cloro.value == 0 || form_cloro_ativo.value == 0) {
         erro(true)
         errop.innerHTML = 'ERRO: Por favor, complete os campos anteriores'
-    } else{
+    } else {
         volume_agua = Number(form_volume_agua.value)
         ppm_cloro = Number(form_ppm_cloro.value)
         cloro_ativo = Number(form_cloro_ativo.value)
@@ -46,11 +46,11 @@ function validacao_form(){
     }
 }
 
-function validacao_negativo(){
+function validacao_negativo() {
     if (volume_agua < 0 || ppm_cloro < 0 || cloro_ativo < 0){
         erro(true)
         errop.innerHTML = 'ERRO: Por favor digite um valor maior que 0 nos campos anteriores'
-    } else{
+    } else {
         calculo()
     }
 }
@@ -70,7 +70,7 @@ function saida_calculo(){
     tipo_limpeza()
 }
 
-function tipo_limpeza(){
+function tipo_limpeza() {
     var possibilidades_limpeza = [
         {
             condicao: ppm_cloro < 50, 
@@ -116,7 +116,7 @@ function tipo_limpeza(){
     realizarVerificacoes()
 }
 
-function resetar_valores(){
+function resetar_valores() {
     form_volume_agua.value = null
     form_ppm_cloro.value = null
     form_cloro_ativo.value = null

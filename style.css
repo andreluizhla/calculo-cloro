@@ -25,6 +25,7 @@
         margin: 0px;
         font-size: 10px;
     }
+
 }
 
 @media screen and (min-width: 500px) {
@@ -67,11 +68,11 @@ header h1 {
     padding: 10px;
 }
 
-/* Estilos do Conteúdo Principal */
 main {
     box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.87);
     background-color: var(--branco);
     padding: 20px;
+    border-radius: 30px 30px 0 0;
 }
 
 h2 {
@@ -102,10 +103,7 @@ thead th {
     position: sticky;
     top: -1px;
     border: 1px solid var(--preto);
-}
-
-div#tabela {
-    overflow-x: auto;
+    background-color: var(--cinza);
 }
 
 th, td {
@@ -133,22 +131,12 @@ th, td {
     margin: 20px 20px 0px 20px;
     background-color: #00fbc52c;
     border-radius: 30px;
+    margin: 20px 0px 20px 0px;
 }
 
 #erro{
     border-radius: 5px;
 }
-
-/*
-#saida > p:not(#nada), #saida > p:not(#erro){
-    border-radius: 30px 30px 0px 0px;
-}
-#limpeza{
-    margin: 0px 20px 20px 20px;
-    padding: auto auto 20px auto;
-    background-color: #00fbc52c;
-    border-radius: 0px 0px 30px 30px;
-}*/
 
 button {
     padding: 10px;
@@ -182,18 +170,18 @@ button#reset:hover {
 ul {
     list-style-position: inside;
     line-height: 2em;
+    margin: 0px -15px 0px -25px;
 }
 
-/* Footer */
 footer {
-    background-color: rgb(67, 74, 132);
+    background-color: #2783dfae;
     color: rgb(255, 255, 255);
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 30px 30px;
     box-shadow: rgba(44, 44, 44, 0.537) 4px 4px 4px;
     max-width: 1024px;
     min-width: 320px;
     margin: 0 auto 30px;
-    padding: 10px;
+    padding: 20px 0 20px 0;
     text-align: center;
-    font-family: var(--fonte-montserrat); /* Aplicando a variável de fonte ao rodapé */
+    font-family: var(--fonte-montserrat);
 }

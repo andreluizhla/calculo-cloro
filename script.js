@@ -97,7 +97,7 @@ function tipo_limpeza(){
             tipo: "<p id='cuidado'><strong>CUIDADO: A solução criada poderá corroer e danificar superfícies e materiais, além de ser prejudicial para a saúde do manipulador dessa solução</strong>"
         }
     ]
-    saidap.innerHTML += "Você poderá usar essa solução para realizar a higienização do(s)(as):"
+    saidap.innerHTML += "<p>Você poderá usar essa solução para realizar a higienização do(s)(as):</p>"
         function realizarVerificacoes() {
             possibilidades_limpeza.forEach(function(verificacao) {
                 if (verificacao.condicao) {

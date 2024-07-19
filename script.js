@@ -1,10 +1,22 @@
 var ul = document.getElementById('limpezas_possiveis');
-var saida = document.getElementById("saida")
+var saidap = document.getElementById("saidap")
 var form_volume_agua = document.getElementById("volume_agua")
 var form_ppm_cloro = document.getElementById('ppm_cloro')
 var form_cloro_ativo = document.getElementById('cloro_ativo')
 let volume_agua, ppm_cloro, cloro_ativo, resultado
-var p = saida.getElementsByTagName('p')[0]
+var errop = document.getElementById('erro')
+
+function erro(valor){
+    if (valor){
+        errop.style.backgroundColor = '#ec2e2e93'
+        errop.style.padding = '10px'
+        saidap.innerHTML = ''
+    } else {
+        errop.style.backgroundColor = null
+        errop.style.padding = '0px'
+        errop.innerHTML = ''
+    }
+}
 
 function proximoItem(tecla){
     if (tecla.key === 'Enter'){
@@ -22,12 +34,10 @@ function proximoItem(tecla){
 }
 
 function validacao_form(){
-    saida.innerHTML = ''
+    saidap.innerHTML = ''
     if (form_volume_agua.value == 0 || form_ppm_cloro.value == 0 || form_cloro_ativo.value == 0){
-        saida.innerHTML = ''
-        p.innerHTML = 'ERRO: Por favor, complete os campos anteriores'
-        p.id = 'erro'
-        saida.appendChild(p)
+        erro(true)
+        errop.innerHTML = 'ERRO: Por favor, complete os campos anteriores'
     } else{
         volume_agua = Number(form_volume_agua.value)
         ppm_cloro = Number(form_ppm_cloro.value)
@@ -38,7 +48,8 @@ function validacao_form(){
 
 function validacao_negativo(){
     if (volume_agua < 0 || ppm_cloro < 0 || cloro_ativo < 0){
-        saida.innerHTML = '<p>ERRO: Por favor digite um valor maior que 0 nos campos anteriores</p>'
+        erro(true)
+        errop.innerHTML = 'ERRO: Por favor digite um valor maior que 0 nos campos anteriores'
     } else{
         calculo()
     }
@@ -49,12 +60,13 @@ function calculo(){
 }
 
 function saida_calculo(){
+    erro(false)
     resultado_formatado = resultado.toString().replace('.', ',')
     volume_agua_formatado = volume_agua
     if (volume_agua % 1 !== 0){
         volume_agua_formatado = volume_agua.toString().replace('.', ',')
     }
-    saida.innerHTML = `<p>Para <strong>${volume_agua_formatado} Litro(s) de água</strong>, você irá precisar de <strong>${resultado_formatado} ml de cloro</strong> para criar a solução clorada</p>`
+    saidap.innerHTML = `Para <strong>${volume_agua_formatado} Litro(s) de água</strong>, você irá precisar de <strong>${resultado_formatado} ml de cloro</strong> para criar a solução clorada`
     tipo_limpeza()
 }
 
@@ -62,11 +74,11 @@ function tipo_limpeza(){
     var possibilidades_limpeza = [
         {
             condicao: ppm_cloro >= 100 && ppm_cloro <= 200, 
-            tipo: "<li>Higienização do Hortifruti</li><li>Utensílios de Cozinha</li><li>Geladeiras e Fogões</li>"
+            tipo: "<li>Hortifruti</li><li>Utensílios de Cozinha</li><li>Geladeiras e Fogões</li>"
         },
         {
             condicao: ppm_cloro >= 50 && ppm_cloro < 250, 
-            tipo: "<li>Limpeza Geral de Superfícies</li>"
+            tipo: "<li>Superfícies (Limpeza Geral)</li>"
         },
         {
             condicao: ppm_cloro == 200, 
@@ -78,14 +90,14 @@ function tipo_limpeza(){
         },
         {
             condicao: ppm_cloro >= 1000, 
-            tipo: "<li>Desinfecção porfunda (após manipulação de carnes cruas)</li><p>A partir de 1000 ppm, <strong>TOME CUIDADO</strong>, a solução poderá ser prejudicial a saúde</p>"
+            tipo: "<li>Desinfecção porfunda (após manipulação de carnes cruas)</li>A partir de 1000 ppm, <strong>TOME CUIDADO</strong>, a solução poderá ser prejudicial a saúde"
         },
         {
             condicao: ppm_cloro >= 5000, 
-            tipo: "<p id='cuidado'><strong>CUIDADO: A solução criada poderá corroer e danificar superfícies e materiais, além de ser prejudicial para a saúde do manipulador dessa solução</strong></p>"
+            tipo: "<p id='cuidado'><strong>CUIDADO: A solução criada poderá corroer e danificar superfícies e materiais, além de ser prejudicial para a saúde do manipulador dessa solução</strong>"
         }
     ]
-    saida.innerHTML += "<p>Você poderá usar essa solução para realizar a:</p>"
+    saidap.innerHTML += "Você poderá usar essa solução para realizar a higienização do(s)(as):"
         function realizarVerificacoes() {
             possibilidades_limpeza.forEach(function(verificacao) {
                 if (verificacao.condicao) {
@@ -104,6 +116,7 @@ function resetar_valores(){
     form_volume_agua.value = null
     form_ppm_cloro.value = null
     form_cloro_ativo.value = null
-    saida.innerHTML = '<p id="nada">Aqui irá sair o resultado</p>'
+    erro(false)
+    saidap.innerHTML = 'Aqui irá sair o resultado'
     ul.innerHTML = ''
 }

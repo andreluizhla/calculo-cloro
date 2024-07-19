@@ -73,20 +73,24 @@ function saida_calculo(){
 function tipo_limpeza(){
     var possibilidades_limpeza = [
         {
-            condicao: ppm_cloro >= 100 && ppm_cloro <= 200, 
-            tipo: "<li>Hortifruti</li><li>Utensílios de Cozinha</li><li>Geladeiras e Fogões</li>"
+            condicao: ppm_cloro < 50, 
+            tipo: "<li>A solução é muito fraca para fazer a higienização de algum alimento ou superfície</li>"
         },
         {
             condicao: ppm_cloro >= 50 && ppm_cloro < 250, 
             tipo: "<li>Superfícies (Limpeza Geral)</li>"
         },
         {
+            condicao: ppm_cloro >= 100 && ppm_cloro <= 200, 
+            tipo: "<li>Hortifruti</li><li>Utensílios de Cozinha</li><li>Geladeiras e Fogões</li>"
+        },
+        {
             condicao: ppm_cloro == 200, 
             tipo: "<li>Tábuas de Corte</li>"
         },
         {
-            condicao: ppm_cloro < 50, 
-            tipo: "<li>A solução é muito fraca para fazer a higienização de algum alimento ou superfície</li>"
+            condicao: ppm_cloro >= 250 && ppm < 1000,
+            tipo: "<li>Superfícies que podem ser uma fonte de contaminação</li>"
         },
         {
             condicao: ppm_cloro >= 1000, 

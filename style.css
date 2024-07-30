@@ -173,6 +173,20 @@ ul {
     margin: 0px -15px 0px -25px;
 }
 
+a {
+    text-decoration: none;
+    transition-duration: 750ms;
+}
+
+a:hover{
+    color: #72dbfe;
+    text-decoration: underline;
+}
+
+a::before{
+    content: '\1F517';
+}
+
 footer {
     background-color: #2783dfae;
     color: rgb(255, 255, 255);
